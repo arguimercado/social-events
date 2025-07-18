@@ -13,6 +13,18 @@ builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins(
+                "http://localhost:3000", 
+                "https://localhost:3000");
+    });
+});
+
 
 var app = builder.Build();
 
@@ -34,6 +46,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors("CorsPolicy");
 app.MapControllers();
 
 app.Run();
