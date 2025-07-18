@@ -1,5 +1,5 @@
+using Application.Commons.Contracts;
 using Domain.Activities;
-using Domain.Commons.Abstracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;

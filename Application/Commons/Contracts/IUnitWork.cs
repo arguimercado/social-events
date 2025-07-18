@@ -1,4 +1,4 @@
-namespace Domain.Commons.Abstracts;
+namespace Application.Commons.Contracts;
 
 public interface IUnitOfWork
 {
