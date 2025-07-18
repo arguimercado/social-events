@@ -10,5 +10,11 @@ internal class ActivityRepository(SocialEventDbContext context) : BaseRepository
    {
       return await _context.Activities.ToListAsync(cancellationToken);
    }
+
+   public async Task<Activity?> GetActivityByIdAsync(string id, CancellationToken cancellationToken = default)
+   {
+      return await _context.Activities
+         .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
+   }
    
 }

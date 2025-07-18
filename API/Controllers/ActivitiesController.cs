@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
 public class ActivitiesController : BaseApiController
 {
    public ActivitiesController(IMediator mediator) : base(mediator)
@@ -18,7 +16,14 @@ public class ActivitiesController : BaseApiController
    {
       var query = new GetActivitiesQuery();
       var activities = await Mediator.Send(query, cancellationToken);
-
       return Ok(activities);
+   }
+
+   [HttpGet("{id}")]
+   public async Task<IActionResult> GetActivityById(string id, CancellationToken cancellationToken)
+   {
+      var query = new GetActivityByIdQuery(id);
+      var activity = await Mediator.Send(query, cancellationToken);
+      return Ok(activity);
    }
 }
