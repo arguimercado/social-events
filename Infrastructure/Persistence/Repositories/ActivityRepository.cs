@@ -6,9 +6,9 @@ namespace Infrastructure.Persistence.Repositories;
 
 internal class ActivityRepository(SocialEventDbContext context) : BaseRepository<Activity>(context), IActivityRepository
 {
-   public async Task<IEnumerable<Activity>> GetActivitiesAsync()
+   public async Task<IEnumerable<Activity>> GetActivitiesAsync(CancellationToken cancellationToken = default)
    {
-      return await _context.Activities.ToListAsync();
+      return await _context.Activities.ToListAsync(cancellationToken);
    }
    
 }

@@ -1,11 +1,14 @@
 using API.Extensions;
 using Infrastructure;
+using Application;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -18,6 +21,13 @@ if (app.Environment.IsDevelopment())
 {
     await app.InitializeDatabaseAsync();
     app.MapOpenApi();
+    app.MapScalarApiReference(opt =>
+    {
+        opt.WithTitle("Social Event API");
+		opt.WithTheme(ScalarTheme.BluePlanet);
+		opt.WithSidebar(false);
+    });
+   
 }
 
 app.UseHttpsRedirection();
