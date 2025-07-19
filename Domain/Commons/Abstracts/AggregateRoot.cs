@@ -8,16 +8,23 @@ public abstract class AggregateRoot
    public DateTime CreatedOn { get; private set; }
    public DateTime LastModifiedOn { get; private set; }
 
-   protected AggregateRoot() {
+   protected AggregateRoot()
+   {
       Id = 0;
       CreatedOn = DateTime.UtcNow;
       LastModifiedOn = DateTime.UtcNow;
    }
-   
-   protected AggregateRoot(long id) {
+
+   protected AggregateRoot(long id)
+   {
       Id = id;
       CreatedOn = DateTime.UtcNow;
       LastModifiedOn = DateTime.UtcNow;
+   }
+   
+   protected void SetLastModifiedOn(DateTime dateTime)
+   {
+      LastModifiedOn = dateTime;
    }
    
 }

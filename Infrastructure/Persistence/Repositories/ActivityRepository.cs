@@ -16,5 +16,21 @@ internal class ActivityRepository(SocialEventDbContext context) : BaseRepository
       return await _context.Activities
          .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
    }
+
+   public async Task<Activity?> GetActivityByIdAsync(long id, bool isTracking, CancellationToken cancellationToken = default)
+   {
+      if (isTracking)
+      {
+         return await _context.Activities
+            .AsTracking()
+            .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
+      }
+      else
+      {
+         return await GetActivityByIdAsync(id, cancellationToken);
+      }
+
+     
+   }
    
 }

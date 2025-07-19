@@ -5,7 +5,7 @@ namespace Domain.Activities;
 
 public class Activity : AggregateRoot
 {
-  
+
    public static Activity Create(string title, DateTime date, string description, string category, string city, string venue, double latitude, double longitude)
    {
       return new Activity(title, date, description, category, false, city, venue, latitude, longitude);
@@ -37,7 +37,19 @@ public class Activity : AggregateRoot
    public string City { get; private set; } = default!;
 
    public string Venue { get; private set; } = default!;
-
    public double Latitude { get; private set; }
    public double Longitude { get; private set; }
+   public void Update(string title, DateTime date, string description, string category, string city, string venue, double latitude, double longitude)
+   {
+      Title = title;
+      Date = date;
+      Description = description;
+      Category = category;
+      City = city;
+      Venue = venue;
+      Latitude = latitude;
+      Longitude = longitude;
+
+      SetLastModifiedOn(DateTime.Now);
+   }
 }

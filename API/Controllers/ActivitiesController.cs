@@ -34,4 +34,13 @@ public class ActivitiesController : BaseApiController
 
       return HandleResult(result);
    }
+
+   [HttpPut("{id:long}")]
+   public async Task<IActionResult> UpdateActivity(long id, UpdateActivityRequest request, CancellationToken cancellationToken)
+   {
+      var command = new UpdateActivityCommand(id, request);
+      var result = await Mediator.Send(command, cancellationToken);
+
+      return HandleResult(result);
+   }
 }

@@ -7,4 +7,6 @@ public interface IActivityRepository : IBaseRepository<Activity>
 {
    Task<IEnumerable<Activity>> GetActivitiesAsync(CancellationToken cancellationToken = default);
    Task<Activity?> GetActivityByIdAsync(long id, CancellationToken cancellationToken = default);
+
+   Task<Activity?> GetActivityByIdAsync(long id,bool isTracking, CancellationToken cancellationToken = default);
 }
