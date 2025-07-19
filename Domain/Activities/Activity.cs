@@ -11,7 +11,7 @@ public class Activity : AggregateRoot
       return new Activity(title, date, description, category, isCancelled, city, venue, latitude, longitude);
    }
 
-   protected Activity(string title, DateTime date, string description, string category, bool isCancelled, string city, string venue, double latitude, double longitude) : base(Guid.NewGuid().ToString())
+   protected Activity(string title, DateTime date, string description, string category, bool isCancelled, string city, string venue, double latitude, double longitude) : base(0)
    {
       Title = title;
       Date = date;

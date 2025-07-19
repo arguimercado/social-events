@@ -19,8 +19,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Activities.Activity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
                         .IsRequired()

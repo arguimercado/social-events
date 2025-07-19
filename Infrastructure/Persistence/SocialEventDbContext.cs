@@ -21,6 +21,7 @@ public class SocialEventDbContext : DbContext, IUnitOfWork
       modelBuilder.Entity<Activity>(opt =>
       {
          opt.HasKey(a => a.Id);
+         opt.Property(a => a.Id).ValueGeneratedOnAdd();
          opt.Property(a => a.Title).IsRequired().HasMaxLength(250);
          opt.Property(a => a.Description).HasMaxLength(1000);
          opt.Property(a => a.City).HasMaxLength(500);

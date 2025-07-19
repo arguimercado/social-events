@@ -1,18 +1,21 @@
 using Application.Activities.Contracts;
 using Domain.Activities;
-using MediatR;
+
 
 namespace Application.Activities.Features.Queries;
 
-public record GetActivitiesQuery() : IRequest<List<Activity>>;
+public record GetActivitiesQuery() : IRequest<Result<IEnumerable<Activity>>>;
 
-internal class GetActivitiesQueryHandler(IActivityRepository activityRepository) : IRequestHandler<GetActivitiesQuery, List<Activity>>
+internal class GetActivitiesQueryHandler(IActivityRepository activityRepository) : 
+IRequestHandler<GetActivitiesQuery, Result<IEnumerable<Activity>>>
 {
-   public async Task<List<Activity>> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
+   public async Task<Result<IEnumerable<Activity>>> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
    {
+      
+
       var activities = await activityRepository.GetActivitiesAsync(cancellationToken);
 
-      return [.. activities];
+      return Result.Ok<IEnumerable<Activity>>(activities);
     }
 }
 

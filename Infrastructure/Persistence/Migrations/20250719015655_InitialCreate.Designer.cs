@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SocialEventDbContext))]
-    [Migration("20250718122027_InitialCreate")]
+    [Migration("20250719015655_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -22,8 +22,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Activities.Activity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
                         .IsRequired()

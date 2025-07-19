@@ -6,5 +6,5 @@ namespace Application.Activities.Contracts;
 public interface IActivityRepository : IBaseRepository<Activity>
 {
    Task<IEnumerable<Activity>> GetActivitiesAsync(CancellationToken cancellationToken = default);
-   Task<Activity?> GetActivityByIdAsync(string id, CancellationToken cancellationToken = default);
+   Task<Activity?> GetActivityByIdAsync(long id, CancellationToken cancellationToken = default);
 }

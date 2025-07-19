@@ -4,22 +4,20 @@ namespace Domain.Commons.Abstracts;
 
 public abstract class AggregateRoot
 {
-   public string Id { get; private set; }
+   public long Id { get; private set; }
    public DateTime CreatedOn { get; private set; }
    public DateTime LastModifiedOn { get; private set; }
 
    protected AggregateRoot() {
-      Id = Guid.NewGuid().ToString();
+      Id = 0;
       CreatedOn = DateTime.UtcNow;
       LastModifiedOn = DateTime.UtcNow;
    }
    
-   protected AggregateRoot(string id)
-   {
+   protected AggregateRoot(long id) {
       Id = id;
       CreatedOn = DateTime.UtcNow;
       LastModifiedOn = DateTime.UtcNow;
    }
-
    
 }

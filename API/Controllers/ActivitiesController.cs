@@ -6,24 +6,22 @@ namespace API.Controllers;
 
 public class ActivitiesController : BaseApiController
 {
-   public ActivitiesController(IMediator mediator) : base(mediator)
-   {
-
-   }
+  
 
    [HttpGet]
    public async Task<IActionResult> GetActivities(CancellationToken cancellationToken)
    {
       var query = new GetActivitiesQuery();
       var activities = await Mediator.Send(query, cancellationToken);
-      return Ok(activities);
+      return HandleResult(activities);
    }
 
-   [HttpGet("{id}")]
-   public async Task<IActionResult> GetActivityById(string id, CancellationToken cancellationToken)
+   [HttpGet("{id:long}")]
+   public async Task<IActionResult> GetActivityById(long id, CancellationToken cancellationToken)
    {
       var query = new GetActivityByIdQuery(id);
       var activity = await Mediator.Send(query, cancellationToken);
-      return Ok(activity);
+
+      return HandleResult(activity);
    }
 }
