@@ -6,9 +6,9 @@ namespace Domain.Activities;
 public class Activity : AggregateRoot
 {
   
-   public static Activity Create(string title, DateTime date, string description, string category, bool isCancelled, string city, string venue, double latitude, double longitude)
+   public static Activity Create(string title, DateTime date, string description, string category, string city, string venue, double latitude, double longitude)
    {
-      return new Activity(title, date, description, category, isCancelled, city, venue, latitude, longitude);
+      return new Activity(title, date, description, category, false, city, venue, latitude, longitude);
    }
 
    protected Activity(string title, DateTime date, string description, string category, bool isCancelled, string city, string venue, double latitude, double longitude) : base(0)

@@ -1,21 +1,19 @@
 using Application.Activities.Contracts;
-using Domain.Activities;
+using Application.Activities.Dtos;
 
 
 namespace Application.Activities.Features.Queries;
 
-public record GetActivitiesQuery() : IRequest<Result<IEnumerable<Activity>>>;
+public record GetActivitiesQuery() : IRequest<Result<IEnumerable<ActivityDto>>>;
 
 internal class GetActivitiesQueryHandler(IActivityRepository activityRepository) : 
-IRequestHandler<GetActivitiesQuery, Result<IEnumerable<Activity>>>
+IRequestHandler<GetActivitiesQuery, Result<IEnumerable<ActivityDto>>>
 {
-   public async Task<Result<IEnumerable<Activity>>> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
+   public async Task<Result<IEnumerable<ActivityDto>>> Handle(GetActivitiesQuery request, CancellationToken cancellationToken)
    {
-      
-
       var activities = await activityRepository.GetActivitiesAsync(cancellationToken);
 
-      return Result.Ok<IEnumerable<Activity>>(activities);
+      return Result.Ok<IEnumerable<ActivityDto>>(activities.Select(a => new ActivityDto(a)));
     }
 }
 

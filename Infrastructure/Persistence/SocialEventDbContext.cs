@@ -38,8 +38,8 @@ public class SocialEventDbContext : DbContext, IUnitOfWork
       });
    }
 
-   public async Task<int> CommitChangesAsync()
+   public async Task<int> CommitChangesAsync(CancellationToken cancellationToken = default)
    {
-      return await SaveChangesAsync();
+      return await SaveChangesAsync(cancellationToken);
    }
 }

@@ -1,3 +1,4 @@
+using Application.Activities.Features.Commands;
 using Application.Activities.Features.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ namespace API.Controllers;
 
 public class ActivitiesController : BaseApiController
 {
-  
+
 
    [HttpGet]
    public async Task<IActionResult> GetActivities(CancellationToken cancellationToken)
@@ -23,5 +24,14 @@ public class ActivitiesController : BaseApiController
       var activity = await Mediator.Send(query, cancellationToken);
 
       return HandleResult(activity);
+   }
+
+   [HttpPost("")]
+   public async Task<IActionResult> CreateActivity(CreateActivityRequest request, CancellationToken cancellationToken)
+   {
+      var command = new CreateActivityCommand(request);
+      var result = await Mediator.Send(command, cancellationToken);
+
+      return HandleResult(result);
    }
 }
